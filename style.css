@@ -1,0 +1,49 @@
+body {
+    text-align: center;
+    background: url("background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+canvas {
+    border: 5px dotted white;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+#start {
+    margin-top: -600px;
+    background-color: #b300ff;
+    font-size: 24px
+}
+
+#volumeDiv {
+    float: left;
+    margin-top: ;
+}
+
+#volume {
+    background-color: #ff009d;
+    font-size: 24px;
+}
+
+#speedDiv {
+    float: right;
+}
+
+#speed {
+    background-color: #05ffff;
+    color: black;
+    font-size: 24px;
+}
+
+h1 {
+    background: linear-gradient(to right, #ff009d, #b300ff, #05ffff);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: 30px;
+}
