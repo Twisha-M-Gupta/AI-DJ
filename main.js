@@ -8,6 +8,11 @@ rightWristY = 0;
 scoreKeep = 0;
 scoreKeep1 = 0;
 
+
+function preload() {
+    song = loadSound("music.mp3");
+}
+
 function setup() {
     canvas = createCanvas(600, 500);
     canvas.position(465, 200);
@@ -19,25 +24,12 @@ function setup() {
     poseNet.on('pose', gotPoses);
 }
 
-
-
-function preload() {
-    song = loadSound("music.mp3");
-}
-
-function play() {
-    song.play();
-    song.setVolume(1);
-    song.rate(1);
-}
-
 function modelLoaded() {
     console.log('PoseNet loaded');
 }
 
 function gotPoses(results) {
     if (results.length > 0) {
-        console.log(results);
         scoreKeep = results[0].pose.keypoints[9].score;
         scoreKeep1 = results[0].pose.keypoints[10].score;
 
@@ -55,9 +47,10 @@ function gotPoses(results) {
 function draw() {
     image(video, 0, 0, 600, 500);
 
-    fill("#ff009d");
-    stroke("#ff009d");
     if (scoreKeep1 > 0.2) {
+        fill("#05ffff");
+        stroke("#05ffff");
+
         circle(rightWristX, rightWristY, 15);
 
         if (rightWristY > 0 && rightWristY <= 100) {
@@ -76,14 +69,24 @@ function draw() {
             document.getElementById("speed").innerHTML = "Speed = 2.5x";
             song.rate(2.5);
         }
-
-        if (scoreKeep > 0.2) {
-            circle(leftWristX, leftWristY, 15);
-            n = Number(leftWristY);
-            round = floor(n);
-            volume = round / 500;
-            document.getElementById("volume").innerHTML = "Volume = " + volume;
-            song.setVolume(volume);
-        }
     }
+    if (scoreKeep > 0.2) {
+
+        fill("#ff009d");
+        stroke("#ff009d");
+
+        circle(leftWristX, leftWristY, 15);
+        n = Number(leftWristY);
+        round = floor(n);
+        volume = round / 500;
+        document.getElementById("volume").innerHTML = "Volume = " + volume;
+        song.setVolume(volume);
+    }
+
+}
+
+function play() {
+    song.play();
+    song.setVolume(1);
+    song.rate(1);
 }
